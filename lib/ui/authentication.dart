@@ -1,3 +1,5 @@
+import 'package:Bitcoin_Youtube/net/flutter_fire.dart';
+import 'package:Bitcoin_Youtube/ui/home_view.dart';
 import 'package:flutter/material.dart';
 
 class Authentication extends StatefulWidget {
@@ -60,6 +62,7 @@ class _AuthenticationState extends State<Authentication> {
                 SizedBox(height: 30.0),
                 TextField(
                   controller: passwordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.lock,
@@ -73,6 +76,7 @@ class _AuthenticationState extends State<Authentication> {
                 ),
                 SizedBox(height: 30.0),
                 TextField(
+                  obscureText: true,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.lock,
@@ -89,8 +93,18 @@ class _AuthenticationState extends State<Authentication> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     InkWell(
-                      onTap: () {
-                        //TODO: for the sign up button
+                      onTap: () async {
+                        bool shouldNavigate = await register(
+                            emailController.text, passwordController.text);
+                        if (shouldNavigate) {
+                          //navigate
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeView(),
+                            ),
+                          );
+                        }
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
@@ -102,6 +116,7 @@ class _AuthenticationState extends State<Authentication> {
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
+                                fontSize: 18.0,
                               ),
                             ),
                             SizedBox(width: 5.0),
@@ -143,7 +158,18 @@ class _AuthenticationState extends State<Authentication> {
                   children: [
                     Text("Already have an account?"),
                     FlatButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        bool shouldSignIn = await signIn(
+                            emailController.text, passwordController.text);
+                        if (shouldSignIn) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeView(),
+                            ),
+                          );
+                        }
+                      },
                       child: Text(
                         "Sign in",
                         style: TextStyle(
