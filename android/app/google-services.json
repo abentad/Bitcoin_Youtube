@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1076324677917",
+    "firebase_url": "https://bitcoin-real.firebaseio.com",
+    "project_id": "bitcoin-real",
+    "storage_bucket": "bitcoin-real.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1076324677917:android:b3ba9bb4093a049d7849f4",
+        "android_client_info": {
+          "package_name": "com.example.Bitcoin_Youtube"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1076324677917-k51afm0hcsq00s1jvijfgrtbuildjvlf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiRPXdxqmKbr1SFKL2tXJDaGLzdeIGv00"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1076324677917-k51afm0hcsq00s1jvijfgrtbuildjvlf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
