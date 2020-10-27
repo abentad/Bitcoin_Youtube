@@ -1,6 +1,7 @@
 import 'package:Bitcoin_Youtube/net/flutter_fire.dart';
 import 'package:Bitcoin_Youtube/ui/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Authentication extends StatefulWidget {
   @override
@@ -10,6 +11,9 @@ class Authentication extends StatefulWidget {
 class _AuthenticationState extends State<Authentication> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  bool signedUp = false;
+  bool logedIn;
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +98,9 @@ class _AuthenticationState extends State<Authentication> {
                   children: [
                     InkWell(
                       onTap: () async {
+                        setState(() {
+                          signedUp = true;
+                        });
                         bool shouldNavigate = await register(
                             emailController.text, passwordController.text);
                         if (shouldNavigate) {
@@ -104,26 +111,40 @@ class _AuthenticationState extends State<Authentication> {
                               builder: (context) => HomeView(),
                             ),
                           );
+                          setState(() {
+                            signedUp = false;
+                          });
                         }
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 35.0, vertical: 18.0),
+                        height: 60.0,
+                        width: 150.0,
+                        //padding: EdgeInsets.symmetric(
+                        //horizontal: 35.0, vertical: 18.0),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "SIGN UP",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18.0,
-                              ),
-                            ),
+                            signedUp
+                                ? SpinKitRing(
+                                    lineWidth: 1.3,
+                                    color: Colors.white,
+                                    size: 20.0,
+                                  )
+                                : Text(
+                                    "SIGN UP",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
                             SizedBox(width: 5.0),
-                            Icon(
-                              Icons.arrow_right_alt,
-                              color: Colors.white,
-                            ),
+                            signedUp
+                                ? Container()
+                                : Icon(
+                                    Icons.arrow_right_alt,
+                                    color: Colors.white,
+                                  ),
                           ],
                         ),
                         decoration: BoxDecoration(
